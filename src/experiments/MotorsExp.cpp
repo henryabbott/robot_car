@@ -1,4 +1,5 @@
 
+#include <Arduino.h>
 #include <Wire.h>
 #include <Adafruit_MotorShield.h>
 #include "utility/Adafruit_MS_PWMServoDriver.h"
@@ -63,6 +64,8 @@ void rotate(uint8_t speed, uint8_t dir) {
   }
 }
 
+void stopMoving();
+
 void rotateRightDegrees(int degrees){
   // rotating at speed 100 right for 2500ms is approx 180 degrees
   int duration = degrees / 180.0 * 2300;
@@ -86,14 +89,14 @@ void stopMoving() {
   myMotor4->fullOff();
 }
 
-void setup() {
+void setup_motor_exp() {
   // put your setup code here, to run once:
   AFMS.begin();
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("Setup complete.");
 }
 
-void loop() {
+void loop_motor_exp() {
   // put your main code here, to run repeatedly:
   delay(1000);
 //  moveForward(120);
