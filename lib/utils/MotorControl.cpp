@@ -1,6 +1,5 @@
 #include <MotorControl.h>
-#include <Adafruit_MotorShield.h>
-#include "utility/Adafruit_MS_PWMServoDriver.h"
+
 
 Adafruit_MotorShield AFMS = Adafruit_MotorShield(); 
 
@@ -8,6 +7,17 @@ Adafruit_DCMotor *myMotor1 = AFMS.getMotor(1);
 Adafruit_DCMotor *myMotor2 = AFMS.getMotor(2);
 Adafruit_DCMotor *myMotor3 = AFMS.getMotor(3);
 Adafruit_DCMotor *myMotor4 = AFMS.getMotor(4);
+
+uint8_t current_speed = 0;
+uint8_t current_dir = RELEASE;
+
+uint8_t getCurrentSpeed(){
+    return current_speed;
+}
+
+uint8_t getCurrentDirection(){
+    return current_dir;
+}
 
 void setAllMotorSpeeds(uint8_t speed){
     myMotor1->setSpeed(speed);
@@ -23,18 +33,30 @@ void setAllMotorDir(uint8_t dir){
     myMotor4->run(dir);
 }
 
+void allMotorsOff(){
+    myMotor1->fullOff();
+    myMotor2->fullOff();
+    myMotor3->fullOff();
+    myMotor4->fullOff();
+}
+
 void setup_motor_control(){
     AFMS.begin();
+    allMotorsOff();
 }
 
 void moveForward(uint8_t speed){
     setAllMotorSpeeds(speed);
     setAllMotorDir(FORWARD);
+    current_speed = speed;
+    current_dir = FORWARD;
 }
 
 void moveBackward(uint8_t speed){
     setAllMotorSpeeds(speed);
     setAllMotorDir(BACKWARD);
+    current_speed = speed;
+    current_dir = BACKWARD;
 }
 
 void rotate(uint8_t speed, uint8_t dir){

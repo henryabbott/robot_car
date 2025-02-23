@@ -22,11 +22,19 @@ void handle_remote_command(uint32_t cmd){
     Serial.println("C was pressed");
   if (cmd == BUTTON_UP){
     Serial.println("UP was pressed");
-    moveForward(50);
+    if(getCurrentDirection()==FORWARD){
+      moveForward(min(255, getCurrentSpeed()+50));
+    }else{
+      moveForward(50);
+    }
   }
   if (cmd == BUTTON_DOWN){
     Serial.println("DOWN was pressed");
-    moveBackward(50);
+    if(getCurrentDirection()==BACKWARD){
+      moveBackward(min(255, getCurrentSpeed()+50));
+    }else{
+      moveBackward(50);
+    }
   }
   if (cmd == BUTTON_RIGHT)
     Serial.println("RIGHT was pressed");
