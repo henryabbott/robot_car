@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <RemoteControl.h>
 #include <MotorControl.h>
-
+ 
 void setup() {
   // put your setup code here, to run once:
   // setup_remote_exp();
@@ -42,16 +42,15 @@ void handle_remote_command(uint32_t cmd){
     Serial.println("LEFT was pressed");
   if (cmd == BUTTON_CENTER)
     Serial.println("CENTER was pressed");
-  if (cmd == BUTTON_POWER)
+  if (cmd == BUTTON_POWER){
     Serial.println("POWER was pressed");
+    setAllMotorSpeeds(0); 
+  }
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  // loop_remote_exp();
-  // loop_motor_exp();
-
   uint32_t remote_cmd = checkRemoteControl();
-  if(remote_cmd != BUTTON_NONE)
+  if(remote_cmd != BUTTON_NONE){
     handle_remote_command(remote_cmd);
+  }
 }
