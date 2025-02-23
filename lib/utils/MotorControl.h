@@ -9,7 +9,7 @@
 #define ROTATE_LEFT 2
 
 void setup_motor_control();
-
+void setAllMotorSpeeds(uint8_t speed);
 void moveForward(uint8_t speed);
 void moveBackward(uint8_t speed);
 void rotate(uint8_t speed, uint8_t rotate_dir);
