@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <RemoteControl.h>
+#include <MotorControl.h>
 
 void setup() {
   // put your setup code here, to run once:
@@ -8,7 +9,7 @@ void setup() {
   Serial.begin(115200);
   
   setup_remote_control();
-
+  setup_motor_control();
   Serial.println("Setup complete.");
 }
 
@@ -19,10 +20,14 @@ void handle_remote_command(uint32_t cmd){
     Serial.println("B was pressed");
   if (cmd == BUTTON_C)
     Serial.println("C was pressed");
-  if (cmd == BUTTON_UP)
+  if (cmd == BUTTON_UP){
     Serial.println("UP was pressed");
-  if (cmd == BUTTON_DOWN)
-  Serial.println("DOWN was pressed");
+    moveForward(50);
+  }
+  if (cmd == BUTTON_DOWN){
+    Serial.println("DOWN was pressed");
+    moveBackward(50);
+  }
   if (cmd == BUTTON_RIGHT)
     Serial.println("RIGHT was pressed");
   if (cmd == BUTTON_LEFT)

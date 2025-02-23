@@ -1,8 +1,9 @@
-
 #include <Arduino.h>
 #include <Wire.h>
 #include <Adafruit_MotorShield.h>
 #include "utility/Adafruit_MS_PWMServoDriver.h"
+
+namespace motor_experiment {
 
 #define ROTATE_RIGHT 1
 #define ROTATE_LEFT 2
@@ -124,4 +125,5 @@ void loop_motor_exp() {
   rotateRightDegrees(360);
   delay(2000);
 //  myMotor1->run(RELEASE);
+}
 }
