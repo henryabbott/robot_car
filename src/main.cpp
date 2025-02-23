@@ -3,9 +3,6 @@
 #include <MotorControl.h>
  
 void setup() {
-  // put your setup code here, to run once:
-  // setup_remote_exp();
-  // setup_motor_exp();
   Serial.begin(115200);
   
   setup_remote_control();
